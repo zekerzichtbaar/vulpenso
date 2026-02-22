@@ -1,7 +1,7 @@
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger.js';
-import SplitType from 'split-type';
-gsap.registerPlugin(ScrollTrigger);
+import { SplitText } from 'gsap/SplitText.js';
+gsap.registerPlugin(ScrollTrigger, SplitText);
 
 import LocomotiveScroll from 'locomotive-scroll';
 
@@ -15,9 +15,6 @@ if (!isTouchDevice) {
     autoResize: true,
   });
   scroll.lenisInstance?.on('scroll', ScrollTrigger.update);
-} else {
-  // Voorkomt dat Safari iOS de scroll abrupt stopt bij scrub-animaties
-  ScrollTrigger.normalizeScroll(true);
 }
 
 // Anchor links
@@ -173,79 +170,37 @@ export function initScrollAnimations($) {
     return () => ctx.revert();
   }
 
-  // TEXT REVEAL (karaoke effect)
+  // TEXT REVEAL (karaoke effect) — uses GSAP SplitText with autoSplit for responsive re-splitting
   const initTextReveal = () => {
     const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    const textRevealElements = [];
+    if (prefersReduced) return;
 
     document.querySelectorAll('[data-text-reveal]').forEach(el => {
       const type = el.getAttribute('data-text-reveal') || 'chars';
-      const split = new SplitType(el, { types: 'words, chars' });
-      const targets = split[type];
 
-      if (prefersReduced || !targets?.length) return;
-
-      gsap.set(targets, { opacity: 0.15, willChange: 'opacity' });
-
-      const tl = gsap.timeline();
-      tl.to(targets, {
-        opacity: 1,
-        stagger: 0.03,
-        ease: 'none',
-      });
-
-      const trigger = ScrollTrigger.create({
-        trigger: el,
-        start: 'top 60%',
-        end: 'top 20%',
-        animation: tl,
-        scrub: 1,
-        onComplete: () => {
-          gsap.set(targets, { willChange: 'auto' });
-        }
-      });
-
-      textRevealElements.push({ el, split, trigger, type });
-    });
-
-    // Debounced resize handler
-    let resizeTimeout;
-    window.addEventListener('resize', () => {
-      clearTimeout(resizeTimeout);
-      resizeTimeout = setTimeout(() => {
-        textRevealElements.forEach((item) => {
-          item.trigger.kill();
-          item.split.revert();
-
-          const newSplit = new SplitType(item.el, { types: 'words, chars' });
-          const targets = newSplit[item.type];
-
+      new SplitText(el, {
+        type: 'words, chars',
+        autoSplit: true,
+        onSplit(self) {
+          const targets = self[type];
           if (!targets?.length) return;
 
-          gsap.set(targets, { opacity: 0.15, willChange: 'opacity' });
+          const tl = gsap.timeline({
+            scrollTrigger: {
+              trigger: el,
+              start: 'top 80%',
+              end: 'bottom 40%',
+              scrub: true,
+            },
+          });
 
-          const tl = gsap.timeline();
-          tl.to(targets, {
-            opacity: 1,
-            stagger: 0.03,
+          tl.from(targets, {
+            opacity: 0.15,
+            stagger: 0.1,
             ease: 'none',
           });
-
-          const newTrigger = ScrollTrigger.create({
-            trigger: item.el,
-            start: 'top 60%',
-            end: 'top 20%',
-            animation: tl,
-            scrub: 1,
-            onComplete: () => {
-              gsap.set(targets, { willChange: 'auto' });
-            }
-          });
-
-          item.split = newSplit;
-          item.trigger = newTrigger;
-        });
-      }, 250);
+        }
+      });
     });
   };
 
