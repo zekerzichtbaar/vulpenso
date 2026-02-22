@@ -25,13 +25,16 @@
           </div>
         @endif
         @if ($phone_general)
-          <a href="tel:{!! $phone_general !!}" class="md:hidden grid place-items-center size-12 rounded-xl bg-primary/10">
-            <svg class="size-6" viewBox="0 0 430 430" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <g stroke="#c38e66" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="12">
-                <path d="M105 50c0-11.046 8.954-20 20-20h180c11.046 0 20 8.954 20 20v330c0 11.046-8.954 20-20 20H125c-11.046 0-20-8.954-20-20zm140 15h-60"/>
-                <circle cx="215" cy="345" r="20"/>
-              </g>
-            </svg>
+          <a href="tel:{!! $phone_general !!}" class="md:hidden relative grid place-items-center size-12 rounded-xl bg-primary/10">
+            {{-- Lordicon (laadt erover, verbergt SVG zodra geladen) --}}
+            <x-lordicon
+              src="wired-outline-2806-smartphone-3-hover-phone-ring-alt"
+              trigger="loop"
+              delay="3000"
+              stroke="bold"
+              class="size-6 relative z-10"
+              colors="primary:#C38E66,secondary:#C38E66"
+            />
           </a>
         @endif
       </div>

@@ -2,7 +2,7 @@
   <div class="container relative z-20">
     <div @class([
       'relative -mx-4 md:mx-0',
-      'min-h-[60vh] md:h-[80vh] lg:h-[calc(100vh-2rem)] max-h-[60rem] flex items-center justify-center pt-40 pb-24 md:pt-40 lg:pt-48' => $page === 'home',
+      'min-h-[80vh] md:h-[80vh] lg:h-[calc(100vh-2rem)] max-h-[60rem] flex items-center justify-center pt-40 pb-24 md:pt-40 lg:pt-48' => $page === 'home',
     ])>
       <div @class([
         'relative z-20',
@@ -36,7 +36,7 @@
           :contentItems="$content_items"
           class="xl:max-w-xl"
         />
-        <div class="flex flex-row items-center justify-center gap-2 md:gap-4 mt-4">
+        <div class="flex flex-row items-center justify-center gap-4 mt-4">
           <x-content.buttons
             :buttons="$buttons"
             :contentItems="$content_items"

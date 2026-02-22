@@ -114,11 +114,11 @@
             @foreach($footer_certificates as $certificate)
               @if($certificate['link'])
                 <a href="{{ $certificate['link'] }}" target="_blank" rel="noopener" class="bg-white rounded-xl p-4 grid place-items-center aspect-[3/2] transition-opacity hover:opacity-80">
-                  {!! wp_get_attachment_image($certificate['image'], 'medium', false, ['class' => 'max-h-12 w-auto object-contain']) !!}
+                  {!! wp_get_attachment_image($certificate['image'], 'medium', false, ['class' => 'max-h-14 w-auto object-contain']) !!}
                 </a>
               @else
                 <div class="bg-white/3 border border-white/7 rounded-xl p-4 grid place-items-center aspect-[16/9]">
-                  {!! wp_get_attachment_image($certificate['image'], 'medium', false, ['class' => 'max-h-12 max-w-22 w-auto object-contain']) !!}
+                  {!! wp_get_attachment_image($certificate['image'], 'medium', false, ['class' => 'max-h-14 max-w-22 w-auto object-contain']) !!}
                 </div>
               @endif
             @endforeach

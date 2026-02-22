@@ -23,7 +23,7 @@
   target="{{ $target }}"
   @endif
 >
-  <div class="btn-icon__content flex items-center gap-4 rounded-lg px-4 py-2 md:py-3 relative overflow-hidden">
+  <div class="btn-icon__content flex items-center gap-4 rounded-lg pl-4 pr-2 md:px-4 py-2 md:py-3 relative overflow-hidden">
     <div class="btn-icon__mask relative z-10 flex items-center overflow-hidden">
       <span class="btn-icon__text text-base lg:text-lg font-medium whitespace-nowrap">{!! $title ?: $slot !!}</span>
     </div>

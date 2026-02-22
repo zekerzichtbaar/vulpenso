@@ -74,7 +74,7 @@
             </div>
 
             @if ($show_highlight_overlay)
-              <div class="absolute rounded-2xl bottom-2 md:bottom-4 left-2 md:left-auto right-2 md:right-4 p-4 md:p-8 bg-dark/70 backdrop-blur-lg border border-white/7 max-w-xs md:max-w-sm isolate will-change-transform [transform:translate3d(0,0,0)]" data-reveal-group>
+              <div class="absolute rounded-2xl bottom-2 md:bottom-4 left-2 md:left-auto right-2 md:right-4 p-6 md:p-8 bg-dark/70 backdrop-blur-lg border border-white/7 max-w-xs md:max-w-sm isolate will-change-transform [transform:translate3d(0,0,0)]" data-reveal-group>
                 @if ($overlay_title)
                   <h3 class="text-primary text-lg md:text-xl font-semibold mb-2">{{ $overlay_title }}</h3>
                 @endif

@@ -95,6 +95,16 @@ document.addEventListener('DOMContentLoaded', async () => {
     initDirectionalHover();
   }
 
+  // LORDICON: loop op touch devices i.p.v. hover
+  const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+  if (isTouchDevice) {
+    document.querySelectorAll('lord-icon[data-icon-mobile-loop]').forEach(icon => {
+      icon.setAttribute('trigger', 'loop');
+      icon.setAttribute('delay', '3000');
+      icon.removeAttribute('target');
+    });
+  }
+
   // Start Livewire (which also starts Alpine.js)
   Livewire.start();
 

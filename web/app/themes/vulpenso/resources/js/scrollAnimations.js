@@ -15,6 +15,9 @@ if (!isTouchDevice) {
     autoResize: true,
   });
   scroll.lenisInstance?.on('scroll', ScrollTrigger.update);
+} else {
+  // Voorkomt dat Safari iOS de scroll abrupt stopt bij scrub-animaties
+  ScrollTrigger.normalizeScroll(true);
 }
 
 // Anchor links
@@ -182,13 +185,6 @@ export function initScrollAnimations($) {
 
       if (prefersReduced || !targets?.length) return;
 
-      // Op touch devices: geen scrub (veroorzaakt scroll haperingen op Safari iOS)
-      if (isTouchDevice) {
-        gsap.set(targets, { opacity: 1 });
-        return;
-      }
-
-      // Use GSAP timeline with scrub for better performance
       gsap.set(targets, { opacity: 0.15, willChange: 'opacity' });
 
       const tl = gsap.timeline();

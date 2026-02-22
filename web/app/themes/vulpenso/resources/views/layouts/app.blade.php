@@ -8,6 +8,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap">
+    <link rel="preload" as="fetch" crossorigin href="{{ get_theme_file_uri('public/icons/wired-outline-2806-smartphone-3-hover-phone-ring-alt.json') }}">
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     @livewireStyles
