@@ -15,7 +15,7 @@
 @if($video_type === 'youtube' && $video_link)
   @php $youtube_id = VideoHelper::extractVideoId($video_link, 'youtube'); @endphp
   @if($youtube_id)
-    <div class="relative w-full h-full min-h-[200px]">
+    <div class="absolute inset-0 w-full h-full">
       @if($placeholder)
         <div id="{{ $video_id }}-placeholder" class="absolute inset-0 z-10 transition-opacity duration-500 opacity-100">
           {!! wp_get_attachment_image( $placeholder['ID'], 'full', "", ["class" => "w-full h-full object-cover"] ) !!}
@@ -32,7 +32,7 @@
       @endif
       <div
         id="{{ $video_id }}-player"
-        class="h-full w-full min-h-[200px] z-0"
+        class="absolute inset-0 h-full w-full z-0"
         data-plyr-provider="youtube"
         data-plyr-embed-id="{{ $youtube_id }}"
         data-video-layout="{{ $video_layout }}"
@@ -48,7 +48,7 @@
     $decoded_url = html_entity_decode($video_link, ENT_QUOTES, 'UTF-8');
     $decoded_url = html_entity_decode($decoded_url, ENT_QUOTES, 'UTF-8');
   @endphp
-  <div class="relative w-full h-full min-h-[200px]">
+  <div class="absolute inset-0 w-full h-full">
     @if($placeholder)
       <div id="{{ $video_id }}-placeholder" class="absolute inset-0 z-10 transition-opacity duration-500 opacity-100">
         {!! wp_get_attachment_image( $placeholder['ID'], 'full', "", ["class" => "w-full h-full object-cover"] ) !!}
@@ -63,7 +63,7 @@
       </div>
       <div
         id="{{ $video_id }}-player"
-        class="h-full w-full min-h-[200px] z-0"
+        class="absolute inset-0 h-full w-full z-0"
         data-plyr-provider="vimeo"
         data-plyr-embed-id="{{ $video_link }}"
         data-video-layout="{{ $video_layout }}"
@@ -88,7 +88,10 @@
   </div>
 
 @elseif($video_type === 'file' && $video_file)
-  <div class="relative w-full h-full min-h-[200px]">
+  @php
+    $video_file_url = is_array($video_file) ? ($video_file['url'] ?? '') : $video_file;
+  @endphp
+  <div class="absolute inset-0 w-full h-full">
     @if($placeholder)
       <div id="{{ $video_id }}-placeholder" class="absolute inset-0 z-10 transition-opacity duration-500 opacity-100">
         {!! wp_get_attachment_image( $placeholder['ID'], 'full', "", ["class" => "w-full h-full object-cover"] ) !!}
@@ -114,7 +117,7 @@
       playsinline
       muted
       class="w-full h-full object-cover absolute inset-0 z-0 min-h-[200px]"
-      src="{{ $video_file }}"
+      src="{{ $video_file_url }}"
       id="{{ $video_id }}-video"
       data-video-layout="{{ $video_layout }}"
       data-video-id="{{ $video_id }}"

@@ -102,7 +102,7 @@
             </div>
           </div>
 
-          <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6" data-reveal-group>
             @foreach($related_posts as $related_post)
               @php
                 $related_categories = get_the_terms($related_post->ID, 'news_category');

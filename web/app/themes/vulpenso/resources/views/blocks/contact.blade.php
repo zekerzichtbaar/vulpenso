@@ -24,34 +24,35 @@
           'lg:col-span-3' => $hasContactButtons,
         ])>
           {{-- Content section --}}
-            <div class="flex flex-col gap-4 md:gap-6 md:pr-12 lg:pr-20 xl:pr-24">
-              <x-content.subtitle
-                :subtitle="$subtitle"
-                :contentItems="$content_items"
-                :background="$background_color"
-              />
-              <x-content.title
-                :title="$title"
-                :heading="$heading"
-                :contentItems="$content_items"
-                :background="$background_color"
-              />
-              <x-content.text
-                :content="$content"
-                :contentItems="$content_items"
-                :background="$background_color"
-                class="max-w-full"
-              />
-              @if ($buttons && $content_items && in_array('buttons', $content_items))
-                <div class="flex flex-wrap items-center gap-4 mt-2">
-                  <x-content.buttons :buttons="$buttons" />
-                </div>
-              @endif
-            </div>
+          <div class="flex flex-col gap-4 md:gap-6 md:pr-12 lg:pr-20 xl:pr-24">
+            <x-content.subtitle
+              :subtitle="$subtitle"
+              :contentItems="$content_items"
+              :background="$background_color"
+            />
+            <x-content.title
+              :title="$title"
+              :heading="$heading"
+              :contentItems="$content_items"
+              :background="$background_color"
+            />
+            <x-content.text
+              :content="$content"
+              :contentItems="$content_items"
+              :background="$background_color"
+              class="max-w-full"
+            />
+            @if ($buttons && $content_items && in_array('buttons', $content_items))
+              <div class="flex flex-wrap items-center gap-4 mt-2">
+                <x-content.buttons :buttons="$buttons" />
+              </div>
+            @endif
+          </div> 
 
           {{-- Contact Buttons --}}
           @if($contact_buttons && count($contact_buttons) > 0)
-            <div class="hidden md:grid xl:grid-cols-2 gap-4 mt-4 md:mt-8 lg:mt-12">
+            <div class="bg-white/10 w-full h-px mt-4 md:mt-8"></div>
+            <div class="hidden md:grid xl:grid-cols-2 gap-4 mt-4 md:mt-8">
               @foreach($contact_buttons as $button)
                 <x-cards.link-card
                   :link="$button['link']"

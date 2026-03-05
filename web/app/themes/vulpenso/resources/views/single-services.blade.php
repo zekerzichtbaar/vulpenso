@@ -30,20 +30,16 @@
         />
 
         {{-- Related Services List --}}
-        <div class="flex flex-col mt-8 md:mt-12 divide-y divide-white/10">
+        <div class="flex flex-col mt-8 md:mt-12 divide-y divide-white/10" data-reveal-group>
           @foreach ($related_services as $index => $service)
             <a href="{{ $service['link'] }}" class="group grid grid-cols-12 gap-4 md:gap-8 lg:gap-16 py-8 items-center">
               {{-- Image with icon overlay --}}
               <div class="col-span-12 md:col-span-4">
                 <div class="relative aspect-[16/8] rounded-xl overflow-hidden">
-                  <div
-                    data-scroll
-                    data-scroll-speed="-0.05"
-                    class="absolute inset-0 w-full h-full z-0"
-                  >
+                  <div class="absolute inset-0 w-full h-full z-0">
                     @if($service['image'])
                       {!! wp_get_attachment_image($service['image'], 'medium_large', false, [
-                        'class' => 'w-full h-full md:h-[calc(100%+10vh)] md:mt-[-5vh] object-cover transition-transform duration-500 group-hover:scale-105',
+                        'class' => 'w-full h-full object-cover transition-transform duration-500 group-hover:scale-105',
                       ]) !!}
                     @else
                       <div class="w-full h-full bg-white/5"></div>

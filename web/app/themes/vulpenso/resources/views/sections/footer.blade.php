@@ -118,7 +118,7 @@
                 </a>
               @else
                 <div class="bg-white/3 border border-white/7 rounded-xl p-4 grid place-items-center aspect-[16/9]">
-                  {!! wp_get_attachment_image($certificate['image'], 'medium', false, ['class' => 'max-h-14 max-w-22 w-auto object-contain']) !!}
+                  {!! wp_get_attachment_image($certificate['image'], 'medium', false, ['class' => 'max-h-16 max-w-26 w-auto object-contain']) !!}
                 </div>
               @endif
             @endforeach
@@ -171,11 +171,11 @@
       <div class="bg-white/3 border border-white/7 backdrop-blur-lg rounded-xl p-4 md:p-6 lg:p-8 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
         <p class="text-white text-sm">{{ $copyright }}</p>
         @if($footer_links && count($footer_links) > 0)
-          <div class="flex items-center gap-4">
+          <div class="flex flex-col md:flex-row items-center gap-4">
             @foreach($footer_links as $index => $footerLink)
               @if($footerLink['link'])
                 @if($index > 0)
-                  <span class="text-white/30">|</span>
+                  <span class="text-white/30 hidden md:block">|</span>
                 @endif
                 <a href="{{ $footerLink['link']['url'] }}" target="{{ $footerLink['link']['target'] ?? '_self' }}" class="text-white/60 text-sm hover:text-white transition-colors underline">
                   {{ $footerLink['link']['title'] }}

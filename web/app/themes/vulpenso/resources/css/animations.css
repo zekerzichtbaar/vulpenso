@@ -9,7 +9,7 @@
 /* Bottom bar slide up animation */
 @keyframes slideUpDelayed {
   from {
-    transform: translateY(100%);
+    transform: translateY(200%);
   }
   to {
     transform: translateY(0);
@@ -18,5 +18,5 @@
 
 .animate-slide-up-delayed {
   animation: slideUpDelayed 0.8s cubic-bezier(0.16, 1, 0.3, 1) 3s forwards;
-  transform: translateY(100%);
+  transform: translateY(200%);
 }
