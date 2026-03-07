@@ -1,16 +1,4 @@
-<div
-  x-data="{ hidden: false }"
-  x-init="
-    const footer = document.querySelector('footer');
-    if (footer) {
-      const observer = new IntersectionObserver(([entry]) => {
-        hidden = entry.isIntersecting;
-      }, { threshold: 0.5 });
-      observer.observe(footer);
-    }
-  "
-  :class="hidden ? 'translate-y-24 opacity-0 pointer-events-none' : 'translate-y-0 opacity-100'"
-  class="fixed bottom-4 left-1/2 -translate-x-1/2 z-50 hidden md:block transition-all duration-500">
+<div class="fixed bottom-4 left-1/2 -translate-x-1/2 z-50 hidden md:block">
   <div class="animate-slide-up-delayed flex items-center gap-8 bg-dark/80 backdrop-blur-lg border border-white/5 rounded-xl py-3 px-8 isolate will-change-transform">
     <div
       data-whatsapp-modal-toggle

@@ -34,10 +34,10 @@
     <div class="flex flex-col w-full">
         <div class="flex items-center justify-between gap-4 md:gap-6">
             <span class="question font-medium block list-none">
-                {!! $question !!}
                 @if($hasVideo)
-                  <svg class="inline-block size-8 ml-2 -mt-0.5" fill="none" viewBox="0 0 430 430"><g stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="18"><path d="M167.602 215.4v-77l58.1 38.5 58.1 38.5-58.1 38.6-58.1 38.5z"/><path d="M215.5 382.5c92.508 0 167.5-74.992 167.5-167.5S308.008 47.5 215.5 47.5 48 122.492 48 215s74.992 167.5 167.5 167.5"/></g></svg>
+                  <svg class="inline-block size-8 mr-2 -mt-0.5" fill="none" viewBox="0 0 430 430"><g stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="18"><path d="M167.602 215.4v-77l58.1 38.5 58.1 38.5-58.1 38.6-58.1 38.5z"/><path d="M215.5 382.5c92.508 0 167.5-74.992 167.5-167.5S308.008 47.5 215.5 47.5 48 122.492 48 215s74.992 167.5 167.5 167.5"/></g></svg>
                 @endif
+                {!! $question !!}
             </span>
             <div
               class="flex-shrink-0 overflow-hidden faq-arrow transition-all duration-300 ease-in-out transform size-12 grid place-items-center rounded-xl"
