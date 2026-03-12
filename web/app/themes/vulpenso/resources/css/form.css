@@ -55,6 +55,16 @@ body {
     }
   }
 
+  /* Dark mode confirmation message */
+  .form-dark .gform_confirmation_message {
+    @apply text-white;
+  }
+
+  /* Light mode confirmation message */
+  .form-light .gform_confirmation_message {
+    @apply text-dark;
+  }
+
   /* Dark mode form (on dark background) */
   .form-dark .gform_wrapper.gravity-theme {
     .gfield_label,
