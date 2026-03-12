@@ -6,7 +6,7 @@
 
 @section('content')
 
-<section class="relative text-white">
+<x-section class="relative text-white">
   <div class="container ">
     <div class="relative z-30">
         <div class="grid gap-8 md:gap-12 grid-cols-1 md:grid-cols-3 items-start">
@@ -53,6 +53,6 @@
         </div>
     </div>
   </div>
-</section>
+</x-section>
 
 @endsection

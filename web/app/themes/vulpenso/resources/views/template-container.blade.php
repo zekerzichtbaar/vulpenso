@@ -11,11 +11,15 @@
   wp_reset_postdata()
 @endphp
 
-<x-section>
-  <div class="container">
-    <div class="prose prose-invert prose-lg max-w-none prose-headings:text-light prose-headings:font-semibold prose-p:text-light prose-a:text-yellow prose-a:no-underline hover:prose-a:underline prose-strong:text-light prose-ul:text-light prose-ol:text-light prose-li:marker:text-yellow prose-img:rounded-2xl prose-img:my-8">
-      <h1 class="mb-0">{!! get_the_title() !!}</h1>
-      @php the_content() @endphp
+<x-section class="relative text-white">
+  <div class="container ">
+    <div class="relative z-30">
+        <div class="max-w-5xl mx-auto">
+          <div class="md:col-span-2 prose lg:prose-lg prose-invert prose-strong:text-white prose-headings:text-white prose-headings:font-medium prose-em:text-sm prose-em:leading-[1] text-white prose-h1:text-6xl">
+            <h1 class="mb-0">{!! get_the_title() !!}</h1>
+            @php the_content() @endphp
+          </div>
+        </div>
     </div>
   </div>
 </x-section>

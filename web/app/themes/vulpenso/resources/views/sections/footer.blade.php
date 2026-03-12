@@ -1,7 +1,9 @@
 <footer class="pb-8 relative">
   {{-- Background shape from bottom up to middle of CTA block --}}
   <div class="hidden lg:block absolute left-4 right-4 bottom-4 top-[12rem] md:top-[16rem] lg:top-[20rem] bg-white/4 -z-1 overflow-clip rounded-2xl lg:rounded-3xl">
-    <img src="{{ get_theme_file_uri('resources/images/footer-decoration.svg') }}" alt="Footer shape" class="absolute top-0 bottom-0 right-0 h-full w-auto -z-1 opacity-3">
+    <div class="absolute top-0 bottom-0 right-0 h-full w-full opacity-3 -z-1">
+      <img src="{{ get_theme_file_uri('resources/images/footer-decoration.svg') }}" alt="Footer shape" class="absolute top-0 bottom-0 right-0 h-full w-auto -z-1">
+    </div>
   </div>
 
   {{-- Dark background for top portion --}}
