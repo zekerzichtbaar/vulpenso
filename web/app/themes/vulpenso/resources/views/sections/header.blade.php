@@ -15,7 +15,7 @@
       <div class="flex items-center justify-between md:justify-start px-4 py-2 md:px-6 md:py-2 gap-2 md:gap-4 lg:gap-8 bg-black/70 w-full md:w-auto border border-white/5 backdrop-blur-md rounded-xl isolate will-change-transform [transform:translate3d(0,0,0)]">
         <a href="{{ home_url('/') }}" class="relative py-2">
           <div>
-            <img src="{{ get_theme_file_uri('resources/images/logo.svg') }}" alt="Logo" class="h-8 object-center">
+            <img src="{{ get_theme_file_uri('resources/images/logo.svg') }}" alt="Logo" class="h-8 object-center no-lazy">
           </div>
         </a>
         @if (has_nav_menu('primary_navigation'))
