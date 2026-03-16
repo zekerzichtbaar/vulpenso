@@ -52,22 +52,26 @@
           </p>
         </div>
       </div>
-      @if(is_array($item['image']))
-        {!! wp_get_attachment_image($item['image']['ID'], 'large', false, ['class' => 'absolute inset-0 w-full h-full object-cover transition-transform duration-300 group-hover:scale-105']) !!}
-      @else
-        {!! wp_get_attachment_image($item['image'], 'large', false, ['class' => 'absolute inset-0 w-full h-full object-cover transition-transform duration-300 group-hover:scale-105']) !!}
-      @endif
+      <div class="absolute inset-0 w-full h-full overflow-clip transition-transform duration-300 group-hover:scale-105">
+        @if(is_array($item['image']))
+          {!! wp_get_attachment_image($item['image']['ID'], 'large', false, ['class' => 'absolute inset-0 w-full h-full object-cover']) !!}
+        @else
+          {!! wp_get_attachment_image($item['image'], 'large', false, ['class' => 'absolute inset-0 w-full h-full object-cover']) !!}
+        @endif
+      </div>
       <div class="bg-black/50 absolute inset-0 z-10"></div>
     </div>
 
     @if($isLarge)
       {{-- Grote items desktop: afbeelding volledige hoogte als achtergrond --}}
       <div class="absolute inset-0 w-full h-full overflow-hidden hidden md:block">
-        @if(is_array($item['image']))
-          {!! wp_get_attachment_image($item['image']['ID'], 'large', false, ['class' => 'absolute inset-0 w-full h-full object-cover transition-transform duration-300 group-hover:scale-105']) !!}
-        @else
-          {!! wp_get_attachment_image($item['image'], 'large', false, ['class' => 'absolute inset-0 w-full h-full object-cover transition-transform duration-300 group-hover:scale-105']) !!}
-        @endif
+        <div class="absolute inset-0 w-full h-full overflow-clip transition-transform duration-300 group-hover:scale-105">
+          @if(is_array($item['image']))
+            {!! wp_get_attachment_image($item['image']['ID'], 'large', false, ['class' => 'absolute inset-0 w-full h-full object-cover']) !!}
+          @else
+            {!! wp_get_attachment_image($item['image'], 'large', false, ['class' => 'absolute inset-0 w-full h-full object-cover']) !!}
+          @endif
+        </div>
         <div class="bg-black/40 absolute inset-0 z-10"></div>
         <div class="bg-gradient-to-t from-black/80 to-transparent absolute inset-0"></div>
         <div class="absolute left-8 top-8 z-10 flex items-center">

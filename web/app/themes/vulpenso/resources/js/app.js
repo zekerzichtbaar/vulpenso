@@ -1,27 +1,5 @@
-import $ from 'jquery';
-
-// Initialize lordicon with lottie-light (SVG only, ~70KB vs ~250KB full version)
-// This is loaded immediately for faster icon rendering
-import lottie from 'lottie-web/build/player/lottie_light';
-import { defineElement } from "@lordicon/element";
-defineElement(lottie.loadAnimation);
-
 import { Livewire, Alpine } from '../../vendor/livewire/livewire/dist/livewire.esm';
 import collapse from '@alpinejs/collapse';
-
-import { initWhatsAppModal } from './whatsappModal';
-import { initPostSlider } from './postSlider';
-import { initRespSlider } from './respSlider';
-import { initMobileMenu } from './mobileMenu';
-import { initScrollAnimations } from './scrollAnimations';
-import { initMarquee } from './marquee';
-import { initCTASlider } from './ctaSlider';
-import { initMomentumHover } from './momentumHover';
-import { initPricesNav } from './pricesNav';
-import { initScrollableText } from './scrollableText';
-import { initRotatingText } from './rotatingText';
-import { initServiceMenu } from './serviceMenu';
-import { initDirectionalHover } from './directionalHover';
 
 // Initialize Alpine.js plugins before DOM loads
 Alpine.plugin(collapse);
@@ -34,75 +12,99 @@ window.Alpine = Alpine;
  */
 document.addEventListener('DOMContentLoaded', async () => {
 
-   // WHATSAPP MODAL
-   initWhatsAppModal();
+  // WHATSAPP MODAL
+  const { initWhatsAppModal } = await import('./whatsappModal');
+  initWhatsAppModal();
 
-  // RESP SLIDER
+  // LORDICON (lazy load lottie)
+  if (document.querySelector('lord-icon')) {
+    const [lottie, { defineElement }] = await Promise.all([
+      import('lottie-web/build/player/lottie_light'),
+      import('@lordicon/element'),
+    ]);
+    defineElement(lottie.default.loadAnimation);
+
+    // Loop op touch devices i.p.v. hover
+    const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+    if (isTouchDevice) {
+      document.querySelectorAll('lord-icon[data-icon-mobile-loop]').forEach(icon => {
+        icon.setAttribute('trigger', 'loop');
+        icon.setAttribute('delay', '3000');
+        icon.removeAttribute('target');
+      });
+    }
+  }
+
+  // POST SLIDER
   if (document.querySelector('.post-slider')) {
-    initPostSlider($);
+    const { initPostSlider } = await import('./postSlider');
+    initPostSlider();
   }
 
   // CTA SLIDER
   if (document.querySelector('.cta-slider')) {
+    const { initCTASlider } = await import('./ctaSlider');
     initCTASlider();
   }
 
   // RESP SLIDER
   if (document.querySelector('.resp-slider')) {
+    const $ = (await import('jquery')).default;
+    const { initRespSlider } = await import('./respSlider');
     initRespSlider($);
   }
 
   // MOBILE MENU
   if (document.querySelector('.hamburger')) {
+    const $ = (await import('jquery')).default;
+    const { initMobileMenu } = await import('./mobileMenu');
     initMobileMenu($);
   }
 
   // SCROLL ANIMATIONS
-  initScrollAnimations($);
+  const { initScrollAnimations } = await import('./scrollAnimations');
+  initScrollAnimations();
 
   // MARQUEE
   if (document.querySelector('[data-marquee]')) {
+    const { initMarquee } = await import('./marquee');
     initMarquee();
   }
 
   // MOMENTUM HOVER (Employee cards)
   if (document.querySelector('[data-momentum-hover-init]')) {
+    const { initMomentumHover } = await import('./momentumHover');
     initMomentumHover();
   }
 
   // PRICES NAV
   if (document.querySelector('[data-prices-nav-link]')) {
+    const { initPricesNav } = await import('./pricesNav');
     initPricesNav();
   }
 
   // SCROLLABLE TEXT
   if (document.querySelector('[data-scrollable-text]')) {
+    const { initScrollableText } = await import('./scrollableText');
     initScrollableText();
   }
 
   // ROTATING TEXT
   if (document.querySelector('[data-rotating-title]')) {
+    const { initRotatingText } = await import('./rotatingText');
     initRotatingText();
   }
 
   // SERVICE MENU
   if (document.querySelector('[data-service-menu]')) {
+    const { initServiceMenu } = await import('./serviceMenu');
     initServiceMenu();
   }
 
   // DIRECTIONAL HOVER
   if (document.querySelector('[data-directional-hover]')) {
+    const { initDirectionalHover } = await import('./directionalHover');
     initDirectionalHover();
-  }
-
-  // LORDICON: loop op touch devices i.p.v. hover
-  const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
-  if (isTouchDevice) {
-    document.querySelectorAll('lord-icon[data-icon-mobile-loop]').forEach(icon => {
-      icon.setAttribute('trigger', 'loop');
-      icon.setAttribute('delay', '3000');
-      icon.removeAttribute('target');
-    });
   }
 
   // Start Livewire (which also starts Alpine.js)

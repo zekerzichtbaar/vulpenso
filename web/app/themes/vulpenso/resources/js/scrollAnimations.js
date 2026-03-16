@@ -33,7 +33,7 @@ document.querySelectorAll('a[href^="#"]:not([data-whatsapp-modal-link])').forEac
   });
 });
 
-export function initScrollAnimations($) {
+export function initScrollAnimations() {
 
   gsap.config({
     force3D: true,

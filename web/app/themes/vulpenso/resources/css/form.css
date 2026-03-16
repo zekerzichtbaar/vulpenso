@@ -7,14 +7,6 @@ body {
     .gform_fields {
       @apply gap-y-8;
     }
-    
-    .gform_validation_errors>ol {
-      @apply hidden;
-    }
-    
-    .gform_submission_error {
-      @apply !text-[#d24545] opacity-100 !mb-0;
-    }
 
     .gform_validation_errors:focus {
       @apply !outline-none;
@@ -105,14 +97,18 @@ body {
     }
 
     .gform_validation_errors {
-      @apply bg-red-500/10 border border-red-500/20 text-white rounded-xl p-4;
+      @apply bg-red-500/10 border border-red-500/20 text-white shadow-none rounded-xl p-4;
 
       h2 {
-        @apply text-red-400 text-base font-semibold;
+        @apply text-[#d24545] text-base font-semibold;
       }
 
       li {
-        @apply text-white/70 text-sm;
+        @apply text-[#d24545] text-sm;
+
+        a {
+          @apply text-[#d24545];
+        }
       }
     }
   }
@@ -150,7 +146,7 @@ body {
     }
 
     .gform_validation_errors {
-      @apply bg-red-500/10 border border-red-500/20 text-dark rounded-xl p-4;
+      @apply bg-red-500/10 border-none shadow-none text-dark rounded-xl p-4;
 
       h2 {
         @apply text-red-600 text-base font-semibold;
