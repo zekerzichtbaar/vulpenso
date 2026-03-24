@@ -146,14 +146,18 @@ body {
     }
 
     .gform_validation_errors {
-      @apply bg-red-500/10 border-none shadow-none text-dark rounded-xl p-4;
+      @apply bg-red-500/10 border border-red-500/20 shadow-none text-dark rounded-xl p-4;
 
       h2 {
-        @apply text-red-600 text-base font-semibold;
+        @apply text-[#d24545] text-base font-semibold;
       }
 
       li {
-        @apply text-dark/70 text-sm;
+        @apply text-[#d24545] text-sm;
+
+        a {
+          @apply text-[#d24545];
+        }
       }
     }
   }
